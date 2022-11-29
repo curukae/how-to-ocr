@@ -1,0 +1,43 @@
+---
+title: "How To OCR in R"
+author: "Egemen"
+date: "29 11 2022"
+output: html_document
+---
+
+## Install this library first by writing the console command:
+## install.packages("tesseract")
+
+```{r}
+library(tesseract)
+```
+
+## English is already included. 
+## Locate data
+```{r}
+eng <- tesseract("eng")
+text <- tesseract::ocr("D:\\Egemen\\FILELOCATIONFOLDER\\optical pdf\\oman_(english).pdf", engine = eng)
+```
+
+```{r}
+cat(text)
+```
+
+## We can do it in French also but we need to install trainer
+## See all the languages here: https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions.html
+
+```{r}
+tesseract_download("fra")
+```
+
+
+```{r}
+fra <- tesseract("fra")
+text2 <- tesseract::ocr("D:\\Egemen\\FILELOCATIONFOLDER\\optical pdf\\congo_(french).pdf", engine = fra)
+```
+## To save it as a txt
+
+```{r}
+cat(text, file = "oman.txt")
+cat(text2, file = "congo.txt")
+```
